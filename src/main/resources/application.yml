@@ -1,0 +1,30 @@
+server:
+  port: 9095
+  servlet:
+    context-path: /trackago/
+  tomcat:
+    threads:
+      max: 5
+
+spring:
+  application:
+    name: trackAgo
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${_DB_HOST:localhost:5432}/${_DB_NAME:trackago}?characterEncoding=UTF-8
+    username: ${_DB_USERNAME:admin}
+    password: ${_DB_PASSWORD:admin12345}
+    hikari:
+      minimumIdle: 5
+      maximumPoolSize: 50
+      idleTimeout: 30000
+      poolName: trackAgoHikariCP
+      maxLifetime: 2000000
+      connectionTimeout: 30000
+      schema: ${_DB_SCHEMA:prod}
+      register-mbeans: true
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+    show-sql: true
