@@ -24,7 +24,9 @@ spring:
       schema: ${_DB_SCHEMA:prod}
       register-mbeans: true
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
     show-sql: true
+  cloud:
+    appId:

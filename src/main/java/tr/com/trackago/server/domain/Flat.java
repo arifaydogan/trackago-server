@@ -6,37 +6,43 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import tr.com.trackago.server.base.entity.BaseEntity;
-import tr.com.trackago.server.common.UnitEnum;
+import tr.com.trackago.server.common.FloorEnum;
+import tr.com.trackago.server.common.FrontEnum;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "PRODUCT")
+@Table(name = "FLAT")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Product extends BaseEntity {
+public class Flat extends BaseEntity {
 
 
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long flatId;
 
-    @Column(name = "name", nullable = false, length = 200)
-    private String name;
+    @Column(name = "door_number", nullable = false, length = 5)
+    private String doorNumber;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @JoinColumn(name = "block_id")
+    private Block block;
 
-    @Column(name = "unit", nullable = false, length = 10)
-    private UnitEnum unit;
+    @Column(name = "floor")
+    @Enumerated(EnumType.STRING)
+    private FloorEnum floor;
 
-    @Column(name = "description", length = 500)
-    private String description;
+    @Column(name = "front")
+    @Enumerated(EnumType.STRING)
+    private FrontEnum front;
+
+    @Column(name = "number_of_rooms")
+    private String numberOfRooms;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)

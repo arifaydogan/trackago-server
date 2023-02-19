@@ -5,9 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import tr.com.trackago.server.config.ServerExceptionHandler;
 import tr.com.trackago.server.dto.TrackAgoRequest;
-import tr.com.trackago.server.dto.domain.CategoryDTO;
-import tr.com.trackago.server.dto.request.CategoryRequest;
-import tr.com.trackago.server.service.CategoryService;
+import tr.com.trackago.server.dto.domain.BlockDTO;
+import tr.com.trackago.server.dto.request.BlockRequest;
+import tr.com.trackago.server.service.BlockService;
 import tr.com.trackago.taaspect.annotations.TrackAgoRequestMapping;
 import tr.com.trackago.taaspect.annotations.TrackAgoRestController;
 import tr.com.trackago.tadto.TrackAgoResponse;
@@ -16,13 +16,13 @@ import tr.com.trackago.taexception.TrackAgoException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-@Api(tags = "Category Services")
-@TrackAgoRestController(path = "/category")
-public class CategoryController extends ServerExceptionHandler {
+@Api(tags = "Block Services")
+@TrackAgoRestController(path = "/block")
+public class BlockController extends ServerExceptionHandler {
 
 
     @Autowired
-    CategoryService categoryService;
+    BlockService blockService;
 
     @TrackAgoRequestMapping(path = "/health")
     TrackAgoResponse<String> health(@Valid @RequestBody TrackAgoRequest<String> test, HttpServletRequest request) throws TrackAgoException {
@@ -33,9 +33,9 @@ public class CategoryController extends ServerExceptionHandler {
     }
 
     @TrackAgoRequestMapping(path = "/add")
-    TrackAgoResponse<CategoryDTO> add(@Valid @RequestBody TrackAgoRequest<CategoryRequest> input, HttpServletRequest request) throws TrackAgoException {
-        CategoryDTO output = categoryService.save(new CategoryDTO(input.getBody()));
-        return TrackAgoResponse.<CategoryDTO>builder()
+    TrackAgoResponse<BlockDTO> add(@Valid @RequestBody TrackAgoRequest<BlockRequest> input, HttpServletRequest request) throws TrackAgoException {
+        BlockDTO output = blockService.save(new BlockDTO(input.getBody()));
+        return TrackAgoResponse.<BlockDTO>builder()
                 .body(output)
                 .success()
                 .buildInstance();

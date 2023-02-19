@@ -2,12 +2,12 @@ package tr.com.trackago.server.dao;
 
 import org.springframework.stereotype.Repository;
 import tr.com.trackago.server.base.dao.TrackAgoBaseDao;
-import tr.com.trackago.server.domain.Category;
+import tr.com.trackago.server.domain.Site;
 
 import java.util.Optional;
 
 @Repository
-public interface CategoryDAO extends TrackAgoBaseDao<Category, Long> {
+public interface SiteDAO extends TrackAgoBaseDao<Site, Long> {
 
-    Optional<Category> findByName(String name);
+    Optional<Site> findByName(String name);
 }
